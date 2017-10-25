@@ -1,0 +1,83 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS) -Wl,--as-needed
+export QT_SELECT := qt5
+
+DEBIAN_VERSION = $(shell dpkg-parsechangelog -Sversion)
+UPSTREAM_VERSION = $(firstword $(subst +, ,$(DEBIAN_VERSION)))
+
+%:
+	dh $@ --parallel --with pkgkde_symbolshelper
+
+override_dh_auto_configure:
+	qmake QT_BUILD_PARTS+=tests
+
+override_dh_auto_build-indep:
+	dh_auto_build -Smakefile -- docs
+
+override_dh_auto_install-arch:
+	dh_auto_install
+	# Fix wrong path in pkgconfig files
+	find $(CURDIR)/debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/pkgconfig -type f -name '*.pc' \
+	-exec sed -i -e 's/$(DEB_HOST_MULTIARCH)\/$(DEB_HOST_MULTIARCH)/$(DEB_HOST_MULTIARCH)/g' {} \;
+	
+	# Remove libtool-like files
+	rm -f debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/*.la
+	
+	# Remove private stuff
+	rm -rfv $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/qt5/QtLocation/*/QtLocation/private
+	rm -rfv $(CURDIR)/debian/tmp/usr/include/$(DEB_HOST_MULTIARCH)/qt5/QtPositioning/*/QtPositioning/private
+	rm -fv $(CURDIR)/debian/tmp/usr/lib/*/qt5/mkspecs/modules/qt_lib_*_private.pri
+	
+	# Remove binary that includes libtheora in itself
+	rm -f debian/tmp/usr/lib/*/qt5/examples/qtlocation/declarative/mapviewer/qml_location_mapviewer
+
+override_dh_auto_install-indep:
+	make INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
+
+override_dh_install:
+	dh_install --fail-missing
+
+override_dh_auto_test-arch:
+	$(MAKE) install -Csrc/imports INSTALL_ROOT=$(CURDIR)/test_root
+	# Disable tests for the migration,we have a couple of flaky ones on mips*.
+	-xvfb-run -a -s "-screen 0 1024x768x24 +extension RANDR +extension RENDER +extension GLX" \
+		dh_auto_test -- -Ctests/auto HOME=$(CURDIR)/test_home QT_LOGGING_RULES="default.debug=true" \
+		QML2_IMPORT_PATH=$(CURDIR)/test_root/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/qml
+
+override_dh_auto_test-indep:
+
+override_dh_auto_clean:
+	dh_auto_clean
+	# Leftover files and all symlinks
+	find \( -false \
+	  -o -name \*.a \
+	  -o -name Makefile.Debug \
+	  -o -name Makefile.Release \
+	  -o -name \*.o \
+	  -o -name \*.prl \
+	  -o -name \*.so \
+	  -o -name \*.so.debug \
+	  -o -type l \
+	\) -print0 | xargs -0 rm -rfv
+
+	# Some other leftover binaries
+	rm -fv config.tests/geoclue/geoclue
+
+	rm -rf test_root test_home
+
+override_dh_strip:
+	dh_strip --dbgsym-migration='qtlocation5-dbg (<< 5.7.0-1~), qtpositioning5-dbg (<< 5.5.0-1~)'
+
+get-orig-source:
+	uscan --noconf --download-current-version --no-symlink
+	xz -dc ../qtlocation-opensource-src-$(UPSTREAM_VERSION).tar.xz | \
+		tar --delete qtlocation-opensource-src-$(UPSTREAM_VERSION)/src/3rdparty/mapbox-gl-native | \
+		xz -z > ../qtlocation-opensource-src_$(UPSTREAM_VERSION)+dfsg.orig.tar.xz

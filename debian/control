@@ -1,0 +1,178 @@
+Source: qtlocation-opensource-src
+Section: libs
+Priority: optional
+Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Uploaders: Timo Jyrinki <timo@debian.org>,
+           Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>,
+           Dmitry Shachnev <mitya57@debian.org>,
+           Simon Quigley <tsimonq2@ubuntu.com>
+Build-Depends: debhelper (>= 9.20160114~),
+               libicu-dev,
+               libqt5opengl5-dev (>= 5.9.1+dfsg~),
+               pkg-kde-tools,
+               qml-module-qttest (>= 5.9.1~),
+               qtbase5-private-dev (>= 5.9.1+dfsg~),
+               qtdeclarative5-private-dev (>= 5.9.1~),
+               xauth,
+               xvfb,
+               zlib1g-dev
+Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.1+dfsg~),
+                     qtbase5-doc-html (>= 5.9.1+dfsg~),
+                     qttools5-dev-tools (>= 5.9.1~)
+Standards-Version: 4.0.0
+Homepage: http://qt-project.org/
+Vcs-Git: https://anonscm.debian.org/git/pkg-kde/qt/qtlocation.git
+Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/qt/qtlocation.git
+
+Package: libqt5location5
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt Location module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains Qt Location module.
+
+Package: libqt5positioning5
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Recommends: geoclue-2.0
+Description: Qt Positioning module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains Qt Positioning module.
+
+Package: libqt5location5-plugins
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5location5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Qt Location module - geolocation plugins
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains Qt Location position and geolocation plugins.
+
+Package: libqt5positioning5-plugins
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5positioning5 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Qt Positioning module - position plugins
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains Qt Positioning plugins.
+
+Package: qml-module-qtlocation
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5location5-plugins (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Qt Location QML module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the Qt Location QML plugin for Qt Declarative.
+
+Package: qml-module-qtpositioning
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5positioning5-plugins (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Qt Positioning QML module
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the Qt Positioning QML plugin for Qt Declarative.
+
+Package: qtlocation5-dev
+Architecture: any
+Section: libdevel
+Depends: libqt5location5 (= ${binary:Version}),
+         libqt5location5-plugins (= ${binary:Version}),
+         qtbase5-dev,
+         qtdeclarative5-dev,
+         ${misc:Depends}
+Description: Qt 5 Location development files
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the header development files used for building Qt 5
+ applications using Qt Location library.
+
+Package: qtpositioning5-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libqt5positioning5 (= ${binary:Version}),
+         libqt5positioning5-plugins (= ${binary:Version}),
+         qtbase5-dev,
+         qtdeclarative5-dev,
+         ${misc:Depends}
+Description: Qt 5 Positioning development files
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the header development files used for building Qt 5
+ applications using Qt Positioning library.
+
+Package: qtlocation5-examples
+Architecture: any
+Multi-Arch: same
+Section: x11
+Pre-Depends: ${misc:Pre-Depends}
+Depends: libqt5location5-plugins (= ${binary:Version}),
+         libqt5positioning5-plugins (= ${binary:Version}),
+         qml-module-qtlocation (= ${binary:Version}),
+         qml-module-qtpositioning (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: qtpositioning5-examples (<< 5.5.0~)
+Replaces: qtpositioning5-examples (<< 5.5.0~)
+Description: Qt 5 Location and Positioning examples
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains Qt 5 Location and Positioning examples.
+
+Package: qtlocation5-doc
+Priority: extra
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Breaks: qtpositioning5-doc (<< 5.5.0~)
+Replaces: qtpositioning5-doc (<< 5.5.0~)
+Description: Qt 5 Positioning documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the documentation for the Qt 5 Positioning
+ library and binaries.
+
+Package: qtlocation5-doc-html
+Priority: extra
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Breaks: qtpositioning5-doc-html (<< 5.5.0~)
+Replaces: qtpositioning5-doc-html (<< 5.5.0~)
+Description: Qt 5 Positioning HTML documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the HTML documentation for the Qt 5 Positioning
+ libraries and binaries.

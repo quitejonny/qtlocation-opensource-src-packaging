@@ -1,0 +1,308 @@
+qtlocation-opensource-src (5.9.1+dfsg-2) unstable; urgency=medium
+
+  * Release to unstable.
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 16 Aug 2017 11:41:44 -0300
+
+qtlocation-opensource-src (5.9.1+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.9.1.
+  * Refresh disable_failing_tests.patch.
+  * Drop the transitional packages. They are already transitional in
+    the current Debian stable and Ubuntu LTS releases.
+  * Update libqt5location5.symbols from the current build log.
+  * Run all tests in Xvfb, drop disable_failing_tests.patch.
+    - Add build-dependencies on xauth, xvfb and qml-module-qttest.
+  * Bump Standards-Version to 4.0.0, no changes needed.
+  * Simplify and speed up get-orig-source code by using pipes.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 04 Jul 2017 00:25:47 +0300
+
+qtlocation-opensource-src (5.9.0+dfsg-2) experimental; urgency=medium
+
+  * Drop fix_qtdeclarative_private_code.patch, it was only needed with
+    qtdeclarative 5.9.0 beta 3.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 20 Jun 2017 13:31:29 +0300
+
+qtlocation-opensource-src (5.9.0+dfsg-1) experimental; urgency=medium
+
+  [ Simon Quigley ]
+  * New upstream release.
+  * Add myself to Uploaders.
+  * Add libicu-dev and zlib1g-dev to build dependencies as they are now
+    used by upstream.
+  * Install new upstream files.
+
+  [ Dmitry Shachnev ]
+  * Remove src/3rdparty/mapbox-gl-native from the tarball. It helps us
+    reduce source size from 57M to 3.2M and solve many copyright issues.
+    Because of #855464, use custom code in debian/rules to do that.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Fri, 16 Jun 2017 02:51:53 -0500
+
+qtlocation-opensource-src (5.7.1-1) unstable; urgency=medium
+
+  * New upstream stable release.
+  * Ignore the tests results rather than completely disable them.
+  * Bump qtbase build-dependencies to 5.7.1 final.
+  * Update debian/copyright.
+  * Update libqt5location5.symbols from the current amd64 build log.
+  * Replace 5.7.1~20161021 with 5.7.1 in libqt5location5.symbols.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 16 Dec 2016 21:07:41 +0300
+
+qtlocation-opensource-src (5.7.1~20161021-3) unstable; urgency=medium
+
+  * Disable tests during the transition. We have a couple of flaky tests
+    on mips*, sometimes they work sometimes they don't. This will be further
+    investigated.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 03 Nov 2016 15:47:06 -0300
+
+qtlocation-opensource-src (5.7.1~20161021-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 01 Nov 2016 16:26:52 +0300
+
+qtlocation-opensource-src (5.7.1~20161021-1) experimental; urgency=medium
+
+  * New upstream snapshot.
+    - Bump Qt build dependencies.
+  * Update symbols files with current build log.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 26 Oct 2016 09:52:23 -0300
+
+qtlocation-opensource-src (5.7.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Refresh disable_failing_tests.patch.
+  * Bump Qt build-dependencies to 5.7.0.
+  * Update debian/copyright.
+  * Migrate to automatic dbgsym packages.
+  * Update symbols files from amd64 build log.
+  * Drop obsolete Breaks/Replaces.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 14 Jul 2016 23:08:44 +0300
+
+qtlocation-opensource-src (5.6.1-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Mon, 13 Jun 2016 11:01:43 -0300
+
+qtlocation-opensource-src (5.6.1-1) experimental; urgency=medium
+
+  * New upstream release.
+    - Bump Qt build dependencies.
+  * Bump Standards-Version to 3.9.8, no changes required.
+  * Remove libgconf2-dev from build dependencies. It was used for the gipsy
+    plugin, which is long go.
+  * Update install files, one example was removed.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sat, 11 Jun 2016 22:24:09 -0300
+
+qtlocation-opensource-src (5.6.0-1) experimental; urgency=medium
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * New upstream release.
+    - Bump Qt build dependencies.
+  * Make qtlocation5-examples depend on qml-module-qtpositioning.
+  * Make libqt5positioning5 recommend geoclue-2.0. It will connect to it by
+    using dbus.
+
+  [ Dmitry Shachnev ]
+  * Use recommended https URIs for Vcs fields.
+  * Simplify the command for running the tests.
+  * Install the GeoClue plugin again.
+  * Update symbols files for 5.6.0.
+  * Bump Standards-Version to 3.9.7, no changes needed.
+  * Drop debian/copyright entries for removed code.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 30 Mar 2016 23:38:01 +0200
+
+qtlocation-opensource-src (5.5.1-4) unstable; urgency=medium
+
+  * Make qtlocation5-examples depend upon qml-module-qtlocation, required by some
+    examples.
+  * Remove GeoClue support (Closes: #788108). The code has not switched to
+    GeoClue 2. On Qt 5.6 it seems to use DBus to connect to GeoClue, so this
+    feature should come back soon.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 03 Mar 2016 23:29:49 -0300
+
+qtlocation-opensource-src (5.5.1-3) unstable; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Add empty override_dh_auto_test-indep target, so that tests are really
+    not run during arch-indep builds.
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * Upload to unstable.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 21 Oct 2015 19:16:00 -0300
+
+qtlocation-opensource-src (5.5.1-2) experimental; urgency=medium
+
+  * Only run test when building arch-dependant packages. The arch: all
+    packages are just doc (Closes: #802344).
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Mon, 19 Oct 2015 15:56:30 -0300
+
+qtlocation-opensource-src (5.5.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.5.1.
+
+ -- Timo Jyrinki <timo@debian.org>  Mon, 19 Oct 2015 11:22:42 +0000
+
+qtlocation-opensource-src (5.5.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Rename the -doc, -dbg and -examples packages to match the source package
+    name, for consistency with other Qt 5 modules.
+  * Build new packages for qtlocation module.
+  * Drop disable_qtlocation.patch.
+  * Update install files for the new release.
+  * Bump Qt build-dependencies to 5.5.0.
+  * Update debian/copyright.
+  * Disable some failing tests for location module.
+  * Update symbols files.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 27 Aug 2015 22:46:28 +0300
+
+qtlocation-opensource-src (5.4.2-2) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Update symbols files with buildds' logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 24 Jun 2015 16:02:32 -0300
+
+qtlocation-opensource-src (5.4.2-1) experimental; urgency=medium
+
+  * New upstream release.
+    - Bump Qt build dependencies.
+  * Expose HTML documentation (Closes: #751179).
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 03 Jun 2015 16:20:36 -0300
+
+qtlocation-opensource-src (5.4.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.4.1.
+  * Update watch and copyright to use https://download.qt.io/.
+  * Mark three destructors symbols missing with GCC 5 as optional
+    (closes: #778090).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 05 Mar 2015 10:08:42 +0300
+
+qtlocation-opensource-src (5.4.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.4.0.
+  * Drop disable_qgeocircle_extendShape_tests.patch, no longer needed.
+  * Disable building qtlocation module for now.
+  * Build-depend on qtbase5-doc-html, for docs linking.
+  * Update debian/copyright.
+  * Bump Standards-Version to 3.9.6, no changes needed.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 27 Dec 2014 16:33:21 +0300
+
+qtlocation-opensource-src (5.3.2-2) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Create disable_qgeocircle_extendShape_tests.patch to disable this tests
+    until QTBUG-41447 is solved.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 23 Sep 2014 00:26:51 -0300
+
+qtlocation-opensource-src (5.3.2-1) experimental; urgency=medium
+
+  [ Dmitry Shachnev ]
+  * Drop dh_auto_build-arch override, no longer needed.
+  * Run tests with QT_QPA_PLATFORM=minimal, so that they could be
+    run without Xvfb.
+  * Update my e-mail address.
+  * Update Vcs-Browser field to point to cgit interface.
+
+  [ Lisandro Damián Nicanor Pérez Meyer ]
+  * New upstream release.
+  * Bump Qt build dependencies.
+  * Update symbols files with buildds' logs.
+  * Update install files.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Fri, 19 Sep 2014 00:55:17 -0300
+
+qtlocation-opensource-src (5.3.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build dependencies.
+  * Remove remove_qreal_check.patch, applied upstream.
+  * Fix install file with new files.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Tue, 01 Jul 2014 13:24:41 -0300
+
+qtlocation-opensource-src (5.3.0-3) unstable; urgency=medium
+
+  * Add remove_qreal_check.patch to fix build failure on ARM.
+  * Add myself to Uploaders.
+
+ -- Dmitry Shachnev <mitya57@gmail.com>  Sun, 08 Jun 2014 17:39:36 +0400
+
+qtlocation-opensource-src (5.3.0-2) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Re-enable tests, using disable_failing_tests.patch to disable the tests
+    that are currently failing. Both of them seems to lack a source of
+    information to properly work.
+  * Add build dependencies needed for running the tests.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sat, 07 Jun 2014 11:18:06 -0300
+
+qtlocation-opensource-src (5.3.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build dependencies.
+  * Install headers in their new m-a path. Mark development package as
+    Multi-Arch: same.
+  * Remove transitional package qtdeclarative5-qtpositioning-plugin.
+  * Remove skip_failing_tests.patch. If the test are failing then they should
+    not be deactivated but solved, except we have a good reason to do it.
+    And sadly we have one, but seems a missing service for the test to run
+    properly. Disable tests *just* for this uppload.
+  * Remove qtdeclarative5-qtquick2-plugin from the build dependencies, it is
+    not really needed.
+  * Add dbus as build dependency and run dbus-launch for the tests.
+  * Add geoclue as build dependency, it is needed by the tests.
+  * Update symbols files with current build log.
+  * Update install files.
+  * Fix path for removing private headers.
+  * Update debian/copyright.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 29 May 2014 23:32:11 -0300
+
+qtlocation-opensource-src (5.2.1-3) unstable; urgency=medium
+
+  * Rename the QML module from qtdeclarative5-qtlocation-plugin to
+    qml-module-location, adding proper Break+Replaces and renaming necessary
+    files.
+    Also rename the location QML module files, which is currently not being
+     built.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Thu, 03 Apr 2014 12:14:03 -0300
+
+qtlocation-opensource-src (5.2.1-2) unstable; urgency=medium
+
+  * Upload to unstable.
+  * Update symbols files with buildd's logs.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 26 Mar 2014 08:34:10 -0300
+
+qtlocation-opensource-src (5.2.1-1) experimental; urgency=low
+
+  * Initial release. (Closes: #697509)
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Wed, 26 Feb 2014 23:29:05 -0300
