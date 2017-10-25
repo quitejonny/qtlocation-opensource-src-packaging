@@ -3,7 +3,7 @@ Section: libs
 Priority: optional
 Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Timo Jyrinki <timo@debian.org>,
-           Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>,
+           Lisandro Damian Nicanor Perez Meyer <lisandro@debian.org>,
            Dmitry Shachnev <mitya57@debian.org>,
            Simon Quigley <tsimonq2@ubuntu.com>
 Build-Depends: debhelper (>= 9.20160114~),
@@ -17,7 +17,7 @@ Build-Depends: debhelper (>= 9.20160114~),
                xvfb,
                zlib1g-dev
 Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.1+dfsg~),
-                     qtbase5-doc-html (>= 5.9.1+dfsg~),
+                     qtbase5-doc-html (>= 5.6.0~),
                      qttools5-dev-tools (>= 5.9.1~)
 Standards-Version: 4.0.0
 Homepage: http://qt-project.org/
