@@ -1,4 +1,43 @@
-qtlocation-opensource-src (5.9.1+dfsg+ubports) xenial; urgency=medium
+qtlocation-opensource-src (5.9.3+dfsg-0ubports2) xenial; urgency=medium
+
+  * Build for xenial 
+
+ -- Marius <mariogrip@ubuntu.com>  Fri, 23 Feb 2018 17:43:11 +0100
+
+qtlocation-opensource-src (5.9.3+dfsg-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 09 Dec 2017 18:49:43 -0600
+
+qtlocation-opensource-src (5.9.2+dfsg-3) unstable; urgency=medium
+
+  * Let dh_auto_configure pass cross tools to qmake (Closes: #881854).
+    Thanks to Helmut Grohne for the patch.
+
+ -- Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>  Sun, 03 Dec 2017 13:33:28 -0300
+
+qtlocation-opensource-src (5.9.2+dfsg-2) unstable; urgency=medium
+
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Thu, 26 Oct 2017 23:55:51 +0300
+
+qtlocation-opensource-src (5.9.2+dfsg-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Bump Qt build-dependencies to 5.9.2.
+  * Use Files-Excluded instead of custom repacking code.
+  * Update debian/copyright.
+  * Install new header qtlocation-config.h in qtlocation5-dev.
+  * Update debian/libqt5location5.symbols from the current build log.
+  * Use debhelper compat level 10 and dh_missing.
+  * Bump Standards-Version to 4.1.1, stop using deprecated Priority:
+    extra.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 15 Oct 2017 14:49:49 +0300
+
+qtlocation-opensource-src (5.9.1+dfsg-2) unstable; urgency=medium
 
   * Release to unstable.
   * Update symbols files with buildds' logs.

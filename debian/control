@@ -1,25 +1,25 @@
 Source: qtlocation-opensource-src
 Section: libs
 Priority: optional
-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Debian Qt/KDE Maintainers <debian-qt-kde@lists.debian.org>
 Uploaders: Timo Jyrinki <timo@debian.org>,
-           Lisandro Damian Nicanor Perez Meyer <lisandro@debian.org>,
+           Lisandro Damián Nicanor Pérez Meyer <lisandro@debian.org>,
            Dmitry Shachnev <mitya57@debian.org>,
            Simon Quigley <tsimonq2@ubuntu.com>
-Build-Depends: debhelper (>= 9.20160114~),
+Build-Depends: debhelper (>= 9),
                libicu-dev,
-               libqt5opengl5-dev (>= 5.9.1+dfsg~),
+               libqt5opengl5-dev (>= 5.9.2+dfsg~),
                pkg-kde-tools,
-               qml-module-qttest (>= 5.9.1~),
-               qtbase5-private-dev (>= 5.9.1+dfsg~),
-               qtdeclarative5-private-dev (>= 5.9.1~),
+               qml-module-qttest (>= 5.9.2~),
+               qtbase5-private-dev (>= 5.9.2+dfsg~),
+               qtdeclarative5-private-dev (>= 5.9.2~),
                xauth,
                xvfb,
                zlib1g-dev
-Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.1+dfsg~),
-                     qtbase5-doc-html (>= 5.6.0~),
-                     qttools5-dev-tools (>= 5.9.1~)
-Standards-Version: 4.0.0
+Build-Depends-Indep: libqt5sql5-sqlite (>= 5.9.0+dfsg~),
+                     qttools5-dev-tools (>= 5.9.0~)
+Standards-Version: 4.1.1
 Homepage: http://qt-project.org/
 Vcs-Git: https://anonscm.debian.org/git/pkg-kde/qt/qtlocation.git
 Vcs-Browser: https://anonscm.debian.org/cgit/pkg-kde/qt/qtlocation.git
@@ -150,7 +150,6 @@ Description: Qt 5 Location and Positioning examples
  This package contains Qt 5 Location and Positioning examples.
 
 Package: qtlocation5-doc
-Priority: extra
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
@@ -164,7 +163,6 @@ Description: Qt 5 Positioning documentation
  library and binaries.
 
 Package: qtlocation5-doc-html
-Priority: extra
 Architecture: all
 Section: doc
 Depends: ${misc:Depends}
