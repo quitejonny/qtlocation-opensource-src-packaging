@@ -1,8 +1,20 @@
-qtlocation-opensource-src (5.9.3+dfsg-0ubports2) xenial; urgency=medium
+qtlocation-opensource-src (5.9.5+dfsg-0ubports2) xenial; urgency=medium
 
-  * Build for xenial 
+  * Update symbols from build logs.
 
- -- Marius <mariogrip@ubuntu.com>  Fri, 23 Feb 2018 17:43:11 +0100
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 14 Apr 2018 12:41:06 -0500
+
+qtlocation-opensource-src (5.9.5+dfsg-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 14 Apr 2018 12:12:43 -0500
+
+qtlocation-opensource-src (5.9.4+dfsg-0ubuntu1) bionic; urgency=medium
+
+  * New upstream release.
+
+ -- Simon Quigley <tsimonq2@ubuntu.com>  Sat, 24 Feb 2018 13:29:02 -0600
 
 qtlocation-opensource-src (5.9.3+dfsg-0ubuntu1) bionic; urgency=medium
 
